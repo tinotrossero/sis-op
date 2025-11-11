@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Obtener la ruta actual del directorio de trabajo
+workspace_path="$PWD"
+
+# Extraer el nombre del directorio base del camino del espacio de trabajo
+workspace_basename=$(basename "$workspace_path")
+
+# Imprimir el nombre del directorio base del espacio de trabajo
+echo "El nombre del directorio base del espacio de trabajo es: $workspace_basename"
