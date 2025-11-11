@@ -1,0 +1,26 @@
+#!/bin/bash
+# Verificar si se pasó al menos el segundo parámetro opcional
+if [ "$#" -lt 1 ]; then
+    echo "Uso: $0 <optional_second_param>"
+    exit 1
+fi
+
+# Parámetro opcional
+second_param=$1
+workspace_path="$PWD"
+workspace_basename=$(basename "$workspace_path")
+FILE=$workspace_basename
+BIN=./bin/$FILE
+config_file="./$second_param.config"
+log_file="v$FILE.log"
+valgrind_comando="valgrind --tool=memcheck --leak-check=yes --show-possibly-lost=no --show-reachable=no --num-callers=20 --track-origins=yes --log-file=$log_file -s"
+make $BIN
+
+# Verificar si el binario fue creado y ejecutar
+if test -f $BIN; then
+    if [ -n "$second_param" ]; then
+      $valgrind_comando $BIN "$config_file" "$second_param"
+    else
+      $valgrind_comando $BIN "$config_file"
+    fi
+fi

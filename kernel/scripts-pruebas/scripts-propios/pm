@@ -1,0 +1,11 @@
+INICIAR_PROCESO /scripts_memoria/MEMORIA_1
+INICIAR_PROCESO /scripts_memoria/MEMORIA_2
+INICIAR_PROCESO /scripts_memoria/MEMORIA_1
+INICIAR_PROCESO /scripts_memoria/MEMORIA_2
+INICIAR_PROCESO /scripts_memoria/MEMORIA_1
+INICIAR_PROCESO /scripts_memoria/MEMORIA_3
+INICIAR_PROCESO /scripts_memoria/MEMORIA_3
+INICIAR_PROCESO /scripts_memoria/MEMORIA_2
+INICIAR_PROCESO /scripts_memoria/MEMORIA_1
+INICIAR_PROCESO /scripts_memoria/MEMORIA_2
+INICIAR_PROCESO /scripts_memoria/MEMORIA_3

@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Verificar si se pasó al menos el segundo parámetro opcional
+if [ "$#" -lt 1 ]; then
+    echo "Uso: $0 <optional_second_param>"
+    exit 1
+fi
+
+# Parámetro opcional
+second_param=$1
+third_param=$2
+
+# Ruta del workspace
+workspace_path="$PWD"
+workspace_basename=$(basename "$workspace_path")
+FILE=$workspace_basename
+BIN=./bin/$FILE
+config_file="./configs/$third_param"
+
+if [ -z "$2" ]; then
+     CONFIG_FILE="./configs/$second_param" # Archivo de configuración predeterminado
+else   
+    CONFIG_FILE="$config_file"  # Archivo de configuración proporcionado como argumento
+fi
+
+# Compilar
+make $BIN
+
+# Verificar si el binario fue creado y ejecutar
+if test -f $BIN; then
+    if [ -n "$second_param" ]; then
+        $BIN "$CONFIG_FILE.config" "$second_param"
+    else
+        $BIN "$CONFIG_FILE.config"
+    fi
+fi

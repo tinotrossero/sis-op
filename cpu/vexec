@@ -1,0 +1,11 @@
+#!/bin/bash
+workspace_path="$PWD"
+workspace_basename=$(basename "$workspace_path")
+FILE=$workspace_basename
+BIN=./bin/$FILE
+log_file="v$FILE.log"
+valgrind_comando="valgrind --tool=memcheck --leak-check=yes --show-possibly-lost=no --show-reachable=no --num-callers=20 --track-origins=yes --log-file=$log_file -s"
+make $BIN
+if test -f $BIN; then
+    $valgrind_comando $BIN ./$FILE.config
+fi

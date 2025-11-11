@@ -1,0 +1,9 @@
+#!/bin/bash
+workspace_path="$PWD"
+workspace_basename=$(basename "$workspace_path")
+FILE=$workspace_basename
+BIN=./bin/$FILE
+make $BIN
+if test -f $BIN; then
+    $BIN "-test"
+fi

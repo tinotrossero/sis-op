@@ -1,0 +1,15 @@
+#!/bin/bash
+workspace_path="$PWD"
+workspace_basename=$(basename "$workspace_path")
+FILE=$workspace_basename
+BIN=./bin/$FILE
+if [ -z "$1" ]; then
+    CONFIG_FILE="./$FILE"  # Archivo de configuración predeterminado
+else
+    CONFIG_FILE="./configs/$1"  # Archivo de configuración proporcionado como argumento
+fi
+
+make $BIN
+if test -f $BIN; then
+    $BIN ./$CONFIG_FILE.config
+fi
